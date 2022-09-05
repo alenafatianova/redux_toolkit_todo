@@ -1,12 +1,19 @@
 import React from 'react'
 
-export type TodoItemProps = {
+
+export type TodoItemType = {
     id: string, 
     message: string, 
     status: boolean
 }
 
-export const TodoItem: React.FC<TodoItemProps> = ({id, status, message, toggleStatus, deleteTodo}) => {
+export type TodoListType = {
+    //todos: TodoItemType[]
+    deleteTodo: (id: string) => void
+    toggleStatus: (id: string) => void
+}
+
+export const TodoItem: React.FC<TodoItemType & TodoListType> = ({id, message, status, deleteTodo, toggleStatus}) => {
   return (
     <div>
          <li key={id}>
