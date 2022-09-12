@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
 import './App.css';
-import { AddTodo } from './components/AddTodo';
+import { useDispatch } from 'react-redux';
 import { InputForm } from './components/InputForm';
 import { TodoList } from './components/TodoList';
+import { addTodo } from './store/todoListSlice';
+import { AddTodo } from './components/AddTodo';
 
-function App() {
-  
-  //const [todos, setTodos] = useState<{id: string, message: string, status: boolean}[]>([])
+const App = () => {
+
+  const dispatch = useDispatch()
   const [note, setNote] = useState('')
-
-  // const addTodo = () => {
-  //  setTodos([
-  //   ...todos, 
-  //   {
-  //     id: new Date().toISOString(), 
-  //     message: note,
-  //     status: false
-  // } 
-  // ])
-  //   setNote('')
-  // }
-
-  const deleteTodo = (id: string) => {
-    //setTodos(todos.filter(el => el.id !== id))
+  
+  const addTask = () => {
+    dispatch(addTodo(note))
+    setNote('')
   }
   
   const toggleStatus = (id: string) => {
@@ -39,11 +30,8 @@ function App() {
   return (
     <div>
      <InputForm note={note} setNote={setNote} />
-      <AddTodo addTodo={addTodo}/>
-      <TodoList  
-        toggleStatus={toggleStatus} 
-        deleteTodo={deleteTodo}
-      />
+     <AddTodo addTodo={addTask}/>
+      <TodoList />
     </div>
   )
 }

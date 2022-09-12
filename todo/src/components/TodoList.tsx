@@ -1,9 +1,10 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import todoListSlice from '../store/todoListSlice'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import todoListSlice, { addTodo } from '../store/todoListSlice'
+import { AddTodo } from './AddTodo'
 import { TodoItem, TodoItemType, TodoListType } from './TodoItem' 
 
-export const TodoList: React.FC<TodoListType> = ({ toggleStatus, deleteTodo}) => {
+export const TodoList: React.FC = () => {
     const todos = useSelector((state: any) => state.todos.todos)
   return (
     <div>
@@ -13,12 +14,11 @@ export const TodoList: React.FC<TodoListType> = ({ toggleStatus, deleteTodo}) =>
                 <TodoItem
                 key={todo.id}
                 {...todo}
-                toggleStatus={toggleStatus}
-                deleteTodo={deleteTodo}
         />
             ))}
         
         </ul>
+       
     </div>
   )
 }

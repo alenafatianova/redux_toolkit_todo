@@ -6,6 +6,7 @@ type InputFormType = {
 }
 
 export const InputForm: React.FC<InputFormType> = ({note, setNote}) => {
+  console.log(note)
   return (
     <div>
         <input 
